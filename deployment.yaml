@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: object_detection_deployment
+  name: object-detection-deployment
   labels:
-    app: object_detection
+    app: object-detection
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: object_detection
+      app: object-detection
   template:
     metadata:
       labels:
-        app: object_detection
+        app: object-detection
     spec:
       containers:
-      - name: object_detection
+      - name: object-detection
         image: ashrafsaleem/fit5225:latest
         ports:
         - containerPort: 80
