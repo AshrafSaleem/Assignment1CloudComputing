@@ -1,8 +1,14 @@
 FROM python:3.9-slim
 
-WORKDIR /usr/src/app
+COPY requirements.txt ./
+RUN apt-get update -y
+RUN apt install libgl1-mesa-glx -y
+RUN apt-get install 'ffmpeg'\
+    'libsm6'\
+    'libxext6'  -y
+RUN pip install --no-cache-dir -r requirements.txt
 
-#COPY requirements.txt ./
-#RUN pip install --no-cache-dir -r requirements.txt
-#RUN apt-get update && apt-get install
-RUN pip install Flask numpy opencv-python
+COPY main.py object_detection.py /app/
+COPY yolo_tiny_configs /app/
+WORKDIR /app/
+CMD [ "python", "main.py", "--host=0.0.0.0" ]

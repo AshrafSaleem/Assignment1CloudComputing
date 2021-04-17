@@ -122,7 +122,7 @@ def do_prediction(image,net,LABELS):
     return objects
 
 
-yolo_path  = "yolo_tiny_configs/"
+yolo_path  = "/app/"
 
 ## Yolov3-tiny versrion
 labelsPath= "coco.names"
