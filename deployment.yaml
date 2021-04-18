@@ -1,4 +1,16 @@
 apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-limit-range
+spec:
+  limits:
+  - default:
+      cpu: 0.5
+    defaultRequest:
+      cpu: 0.3
+    type: Container
+---
+apiVersion: v1
 kind: Service
 metadata:
   labels:
@@ -14,6 +26,8 @@ spec:
   selector:
     app: object-detection
   type: NodePort
+  externalIPs:
+  - 118.138.245.59
 
 ---
 apiVersion: apps/v1
@@ -23,7 +37,7 @@ metadata:
   labels:
     app: object-detection
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: object-detection
