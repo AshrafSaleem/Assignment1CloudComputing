@@ -1,3 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: object-detection
+  name: object-detection-service
+  namespace: default
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+    nodePort: 30000
+  selector:
+    app: object-detection
+  type: NodePort
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
